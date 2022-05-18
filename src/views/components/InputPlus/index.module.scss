@@ -1,0 +1,32 @@
+.inputPlus {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 45px;
+
+  &Value {
+    background-color: #abd5ec;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 9px 10px;
+    font: 1rem/1.4 "Roboto", sans-serif;
+    border: none;
+    &:focus {
+      color: #274b73;
+      outline: none;
+    }
+  }
+
+  &Button {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: url("images/plus.svg") no-repeat center;
+    background-color: #36529a;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      outline: none;
+      transition: 0.1s ease-in-out;
+      background-color: #7e91ec;
+    }
+  }
+}
