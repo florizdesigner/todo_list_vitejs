@@ -33,8 +33,7 @@ const localStorageUpdate = <T extends State>(config: StateCreator<T>): StateCrea
 
 const getCurrentState = () => {
     try {
-        const currentState = JSON.parse(window.localStorage.getItem('tasks') || '[]' ) as Task [];
-        return currentState
+        return JSON.parse(window.localStorage.getItem('tasks') || '[]' ) as Task [];
     } catch (err) {
         window.localStorage.setItem('tasks', '[]')
         alert(err)
