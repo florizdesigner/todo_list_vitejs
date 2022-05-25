@@ -4,10 +4,12 @@
   background-color: #fff;
   border-radius: 20px;
   padding: 20px 55px;
+  font: 1rem/1.4 "Oswald", sans-serif;
 
     &Title {
       font-size: 40px;
-      text-transform: capitalize;
+      text-transform: uppercase;
+      letter-spacing: 30px;
       text-align: center;
       margin-bottom: 0.3em;
     }
@@ -21,6 +23,8 @@
 
     &Text {
       text-align: center;
+      font-weight: 300;
+      letter-spacing: 3px;
     }
 }
 

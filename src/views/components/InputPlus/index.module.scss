@@ -4,16 +4,18 @@
   grid-template-columns: 1fr 45px;
 
   &Value {
-    background-color: #abd5ec;
+    background-color: #d5e6ef;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 9px 10px;
-    font: 1rem/1.4 "Roboto", sans-serif;
+    font: 1rem/1.4 "Oswald", sans-serif;
+    font-weight: lighter;
     border: none;
     &:focus {
       color: #274b73;
       outline: none;
     }
+
   }
 
   &Button {
@@ -27,6 +29,11 @@
       outline: none;
       transition: 0.1s ease-in-out;
       background-color: #7e91ec;
+    }
+    &:active {
+      background: url("images/check.svg") no-repeat center;
+      transition: 0.1s ease-in-out;
+
     }
   }
 }

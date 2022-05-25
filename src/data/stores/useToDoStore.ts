@@ -1,6 +1,7 @@
-import create from 'zustand'
+import create, {State, StateCreator} from 'zustand'
 
-import { generateId } from '../helpers';
+import {generateId} from '../helpers';
+import {devtools} from 'zustand/middleware';
 
 interface Task {
     id: string;
@@ -15,8 +16,36 @@ interface ToDoStore {
     deleteTask: (id: string) => void;
 }
 
-export const useToDoStore = create<ToDoStore>((set,get) => ({
-    tasks: [],
+function isToDoStore(object: any): object is ToDoStore {
+    return 'tasks' in object
+}
+
+// localStorageUpdate is middleware
+
+const localStorageUpdate = <T extends State>(config: StateCreator<T>): StateCreator<T> => (set, get, api) => config((nextState, ...args) => {
+    if (isToDoStore(nextState)) {
+        window.localStorage.setItem('tasks', JSON.stringify(
+            nextState.tasks
+        ))
+    }
+    set(nextState, ...args)
+}, get, api)
+
+const getCurrentState = () => {
+    try {
+        const currentState = JSON.parse(window.localStorage.getItem('tasks') || '[]' ) as Task [];
+        return currentState
+    } catch (err) {
+        window.localStorage.setItem('tasks', '[]')
+        alert(err)
+    }
+
+    return []
+
+}
+
+export const useToDoStore = create<ToDoStore>(localStorageUpdate(devtools((set, get) => ({
+    tasks: getCurrentState(),
     createTask: (title) => {
         const {tasks} = get()
         const newTask = {
@@ -32,18 +61,18 @@ export const useToDoStore = create<ToDoStore>((set,get) => ({
         console.log(tasks)
     },
     updateTask: (id, title) => {
-        const { tasks } = get()
+        const {tasks} = get()
         set({
             tasks: tasks.map(task => ({
-                    ...task,
-                    title: task.id === id ? title : task.title
+                ...task,
+                title: task.id === id ? title : task.title
             }))
         })
     },
     deleteTask: (id) => {
-        const { tasks } = get()
+        const {tasks} = get()
         set({
             tasks: tasks.filter(task => task.id !== id)
         })
     },
-}))
+}))))
