@@ -7,8 +7,8 @@ export default defineConfig({
     build: {
         watch: {
             // https://rollupjs.org/guide/en/#watch-options
-        },
-        base: "./"
+        }
 
-    }
+    },
+    base: "/todo_list_vitejs/"
 })
