@@ -10,5 +10,5 @@ export default defineConfig({
         }
 
     },
-    base: "/todo_list_vitejs/"
+    base: "https://florizdesigner.github.io/todo_list_vitejs/"
 })
